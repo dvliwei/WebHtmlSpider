@@ -1,0 +1,12 @@
+
+  {
+    "start_urls":[
+      "https://3a2elaty.com/",
+      "http://www.addiyar.com/"
+    ],
+    "allowed_domains":[
+      "3a2elaty.com",
+      "www.addiyar.com"
+    ]
+  }
+
