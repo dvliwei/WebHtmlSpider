@@ -15,7 +15,7 @@ SPIDER_MODULES = ['WebHtmlSpider.spiders']
 NEWSPIDER_MODULE = 'WebHtmlSpider.spiders'
 
 # 设置爬虫持续多少秒后结束爬虫
-CLOSESPIDER_TIMEOUT=60
+CLOSESPIDER_TIMEOUT=3600
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'WebHtmlSpider (+http://www.yourdomain.com)'
