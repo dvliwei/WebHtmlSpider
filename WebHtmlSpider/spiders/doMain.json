@@ -2,11 +2,39 @@
   {
     "start_urls":[
       "https://3a2elaty.com/",
-      "http://www.addiyar.com/"
+      "http://www.addiyar.com/",
+      "https://2def.com/",
+      "https://www.aa.com.tr/en",
+      "https://24.ae/",
+      "http://3lafkra.com/",
+      "https://aawsat.com/",
+      "https://abunawaf.com/",
+      "http://aitmag.ahram.org.eg/",
+      "http://alam-nouh.com/",
+      "http://algamal.net/",
+      "https://alghad.com/",
+      "https://aljens.info/",
+      "http://all-images.co/",
+      "https://almontada.lmarabic.com/forum"
+
     ],
     "allowed_domains":[
       "3a2elaty.com",
-      "addiyar.com"
+      "addiyar.com",
+      "2def.com",
+      "a.com.tr",
+      "24.ae",
+      "3lafkra.com",
+      "aawsat.com",
+      "abunawaf.com",
+      "aitmag.ahram.org.eg",
+      "alam-nouh.com",
+      "algamal.net",
+      "alghad.com",
+      "aljens.info",
+      "all-images.co",
+      "almontada.lmarabic.com"
+
     ]
   }
 
