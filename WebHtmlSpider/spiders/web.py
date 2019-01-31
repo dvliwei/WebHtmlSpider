@@ -29,7 +29,6 @@ class WebSpider(CrawlSpider):
                 start_urls.append(str(url))
             for url in temp['allowed_domains']:
                 allowed_domains.append(str(url))
-
         self.start_urls = start_urls
         self.allowed_domains = allowed_domains
 
@@ -46,10 +45,12 @@ class WebSpider(CrawlSpider):
         item['url'] = response.url
         urlId = hashlib.md5(response.url).hexdigest();
         item['urlId'] = urlId
-        str = response.url.split('/')[2].strip()
-        host = str.split('.')[-2].strip()
-        suffix = str.split('.')[-1].strip()
-        doMain = host+"."+suffix
+
+        protocol, s1 = urllib.splittype(response.url)
+        host, s2 = urllib.splithost(s1)
+        host, port = urllib.splitport(host)
+        doMain = host
+
         item['domain'] = doMain
         item['status'] = 0
         item['time'] = time.time()
