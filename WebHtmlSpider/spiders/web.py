@@ -45,18 +45,18 @@ class WebSpider(CrawlSpider):
         item['url'] = response.url
         urlId = hashlib.md5(response.url).hexdigest();
         item['urlId'] = urlId
-
         protocol, s1 = urllib.splittype(response.url)
         host, s2 = urllib.splithost(s1)
         host, port = urllib.splitport(host)
         doMain = host
-
-        item['domain'] = doMain
-        item['status'] = 0
-        item['time'] = time.time()
-        item['html'] = response.body
-        self.htmlPath = 'json/' + time.strftime("%Y%m%d", time.localtime())+'/' + time.strftime("%H", time.localtime())+'/'
-        if not os.path.exists(self.htmlPath):
-            os.makedirs(self.htmlPath,0777)
-        item['filePath'] = self.htmlPath+urlId+".html"
+        #判断采集新的url是否是配置文件所允许的
+        if doMain in self.allowed_domains:
+            item['domain'] = doMain
+            item['status'] = 0
+            item['time'] = time.time()
+            item['html'] = response.body
+            self.htmlPath = 'json/' + time.strftime("%Y%m%d", time.localtime())+'/' + time.strftime("%H", time.localtime())+'/'
+            if not os.path.exists(self.htmlPath):
+                os.makedirs(self.htmlPath,0777)
+            item['filePath'] = self.htmlPath+urlId+".html"
         yield item
