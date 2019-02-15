@@ -65,8 +65,12 @@ class  MongoPipeline(object):
     def process_item(self, item, spider):
         if 'url' in item and 'html' in item:
             data = dict(item)
-            del data['html']
-            self.post.insert(data)
+            query = {"urlId": data['urlId']}
+            res = self.post.find_one(query)
+            #判断是否已经查询过
+            if not res:
+                del data['html']
+                self.post.insert(data)
         return item
 
     #爬虫开启事件  当spider被开启时，这个方法被调用。
