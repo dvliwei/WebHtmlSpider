@@ -27,6 +27,10 @@ ROBOTSTXT_OBEY = True
 #增加并发数
 CONCURRENT_REQUESTS = 100
 
+#爬去网站最大允许的深度如果是0则没有限制
+DEPTH_LIMIT=0
+
+
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
@@ -56,6 +60,7 @@ SPIDER_MIDDLEWARES = {
    'WebHtmlSpider.middlewares.WebhtmlspiderSpiderMiddleware': 543,
    'WebHtmlSpider.middlewares.AlbawabhnewsDownloaderMiddleware': None,
    'WebHtmlSpider.middlewares.MyUserAgentMiddleware': 300,
+   'scrapy.contrib.spidermiddleware.offsite.OffsiteMiddleware': 500,
 
 }
 
@@ -126,7 +131,7 @@ MY_USER_AGENT = [
 # each remote server
 #AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
-AUTOTHROTTLE_DEBUG = False
+AUTOTHROTTLE_DEBUG = True
 LOG_LEVEL = 'INFO'
 
 #这意味着该网站提供了原本只有ajax获取到的数据的纯HTML版本。 网站通过两种方法声明:
