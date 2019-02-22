@@ -24,8 +24,17 @@ CLOSESPIDER_TIMEOUT=0
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
+# 默认 Item 并发数：100
+CONCURRENT_ITEMS = 100
+
 #增加并发数
-CONCURRENT_REQUESTS = 100
+CONCURRENT_REQUESTS = 16
+
+# 默认每个域名的并发数：8
+CONCURRENT_REQUESTS_PER_DOMAIN = 10
+
+# 每个IP的最大并发数：0表示忽略
+CONCURRENT_REQUESTS_PER_IP = 0
 
 #爬去网站最大允许的深度如果是0则没有限制
 DEPTH_LIMIT=2
@@ -86,6 +95,7 @@ ITEM_PIPELINES = {
    'WebHtmlSpider.pipelines.WebhtmlspiderPipeline': 300,
    'WebHtmlSpider.pipelines.JsonWritePipline': 300,
    'WebHtmlSpider.pipelines.MongoPipeline': 300,
+   'scrapy_redis.pipelines.RedisPipeline': 301,
 }
 MONGODB_HOST = "localhost"
 MONGODB_PORT = 27017
@@ -149,8 +159,37 @@ SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
 #通过缓存实现增量式爬取（占据内存）
+# 打开缓存
 #HTTPCACHE_ENABLED = True
+
+# 设置缓存过期时间（单位：秒）
 #HTTPCACHE_EXPIRATION_SECS = 0
+
+# 缓存路径(默认为：.scrapy/httpcache)
 #HTTPCACHE_DIR = 'httpcache'
+
+# 忽略的状态码
 #HTTPCACHE_IGNORE_HTTP_CODES = []
+
+# 缓存模式(文件缓存)
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# =====================scrapy-redis配置 =====================
+# Enables scheduling storing requests queue in redis.
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# Ensure all spiders share same duplicates filter through redis.
+#确保所有的爬虫通过Redis去重
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+# 调度状态持久化
+SCHEDULER_PERSIST = True
+# 请求调度使用优先队列
+SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
+#指定连接到redis时使用的端口和地址（可选）
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+#REDIS_URL = 'redis://root:@127.0.0.1:6379'
+#序列化项目管道作为redis Key存储
+#REDIS_ITEMS_KEY = '%(spider)s:items'
+#如果为True，则使用redis的'spop'进行操作。
+#如果需要避免起始网址列表出现重复，这个选项非常有用。开启此选项urls必须通过sadd添加，否则会出现类型错误。
+#REDIS_START_URLS_AS_SET = True

@@ -7,10 +7,14 @@ import  time
 import json
 import urllib
 from scrapy.spiders import CrawlSpider ,Rule
+
+from scrapy_redis.spiders import RedisCrawlSpider
+from redis import Redis
+
 from scrapy.linkextractors import LinkExtractor
 from WebHtmlSpider.items import WebhtmlspiderItem
 
-class WebSpider(CrawlSpider):
+class WebSpider(RedisCrawlSpider):
 
     name = 'web'
     #allowed_domains = ['3a2elaty.com']
