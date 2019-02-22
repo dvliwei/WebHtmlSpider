@@ -15,7 +15,7 @@ SPIDER_MODULES = ['WebHtmlSpider.spiders']
 NEWSPIDER_MODULE = 'WebHtmlSpider.spiders'
 
 # 设置爬虫持续多少秒后结束爬虫
-CLOSESPIDER_TIMEOUT=3600
+CLOSESPIDER_TIMEOUT=0
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'WebHtmlSpider (+http://www.yourdomain.com)'
@@ -28,7 +28,7 @@ ROBOTSTXT_OBEY = True
 CONCURRENT_REQUESTS = 100
 
 #爬去网站最大允许的深度如果是0则没有限制
-DEPTH_LIMIT=0
+DEPTH_LIMIT=2
 
 
 # Configure a delay for requests for the same website (default: 0)
@@ -136,6 +136,15 @@ LOG_LEVEL = 'INFO'
 
 #这意味着该网站提供了原本只有ajax获取到的数据的纯HTML版本。 网站通过两种方法声明:
 AJAXCRAWL_ENABLED = True
+
+#广度优先
+#深度优先是指网络爬虫会从起始页开始，一个链接一个链接跟踪下去，处理完这条线路之后再转入下一个起始页，继续追踪链接
+#广度优先，有人也叫宽度优先，是指将新下载网页发现的链接直接插入到待抓取URL队列的末尾，也就是指网络爬虫会先抓取起始页中的所有网页，然后在选择其中的一个连接网页，继续抓取在此网页中链接的所有网页
+#经过官方文档查询，因为scrapy使用的是后进先出队列，基本可以看成是深度优先（DFO）。如果需要设置广度优先（BFO），可以在settings中添加以下代码。另外当DEPTH_PRIORITY为正值时越靠广度优先，负值则越靠深度优先，默认值为0
+
+DEPTH_PRIORITY = 1
+SCHEDULER_DISK_QUEUE = 'scrapy.squeues.PickleFifoDiskQueue'
+SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
