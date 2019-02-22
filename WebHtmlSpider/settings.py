@@ -95,7 +95,7 @@ ITEM_PIPELINES = {
    'WebHtmlSpider.pipelines.WebhtmlspiderPipeline': 300,
    'WebHtmlSpider.pipelines.JsonWritePipline': 300,
    'WebHtmlSpider.pipelines.MongoPipeline': 300,
-   'scrapy_redis.pipelines.RedisPipeline': 301,
+   #'scrapy_redis.pipelines.RedisPipeline': 301,
 }
 MONGODB_HOST = "localhost"
 MONGODB_PORT = 27017
@@ -176,17 +176,17 @@ SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
 
 # =====================scrapy-redis配置 =====================
 # Enables scheduling storing requests queue in redis.
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+#SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 # Ensure all spiders share same duplicates filter through redis.
 #确保所有的爬虫通过Redis去重
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+#DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 # 调度状态持久化
-SCHEDULER_PERSIST = True
+#SCHEDULER_PERSIST = True
 # 请求调度使用优先队列
-SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
+#SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 #指定连接到redis时使用的端口和地址（可选）
-REDIS_HOST = '127.0.0.1'
-REDIS_PORT = 6379
+# REDIS_HOST = '127.0.0.1'
+# REDIS_PORT = 6379
 #REDIS_URL = 'redis://root:@127.0.0.1:6379'
 #序列化项目管道作为redis Key存储
 #REDIS_ITEMS_KEY = '%(spider)s:items'

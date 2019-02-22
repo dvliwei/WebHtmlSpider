@@ -8,13 +8,10 @@ import json
 import urllib
 from scrapy.spiders import CrawlSpider ,Rule
 
-from scrapy_redis.spiders import RedisCrawlSpider
-from redis import Redis
-
 from scrapy.linkextractors import LinkExtractor
 from WebHtmlSpider.items import WebhtmlspiderItem
 
-class WebSpider(RedisCrawlSpider):
+class WebSpider(CrawlSpider):
 
     name = 'web'
     #allowed_domains = ['3a2elaty.com']
@@ -30,9 +27,16 @@ class WebSpider(RedisCrawlSpider):
         with open("WebHtmlSpider/spiders/doMain.json", "r") as f:
             temp = json.loads(f.read())
             for url in temp['start_urls']:
+
+                protocol, s1 = urllib.splittype(str(url))
+                host, s2 = urllib.splithost(s1)
+                host, port = urllib.splitport(host)
+                doMain = host
+                allowed_domains.append(str(doMain))
                 start_urls.append(str(url))
-            for url in temp['allowed_www_domains']:
-                allowed_domains.append(str(url))
+            #for url in temp['allowed_www_domains']:
+            #    allowed_domains.append(str(url))
+
         self.start_urls = start_urls
         self.allowed_domains = allowed_domains
 
@@ -47,7 +51,7 @@ class WebSpider(RedisCrawlSpider):
     def parse_item(self,response):
         item = WebhtmlspiderItem()
         item['url'] = response.url
-        urlId = hashlib.md5(response.url).hexdigest();
+        urlId = hashlib.md5(response.url).hexdigest()
         item['urlId'] = urlId
         protocol, s1 = urllib.splittype(response.url)
         host, s2 = urllib.splithost(s1)
