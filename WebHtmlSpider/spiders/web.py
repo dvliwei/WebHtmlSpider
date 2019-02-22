@@ -27,15 +27,12 @@ class WebSpider(CrawlSpider):
         with open("WebHtmlSpider/spiders/doMain.json", "r") as f:
             temp = json.loads(f.read())
             for url in temp['start_urls']:
-
                 protocol, s1 = urllib.splittype(str(url))
                 host, s2 = urllib.splithost(s1)
                 host, port = urllib.splitport(host)
                 doMain = host
                 allowed_domains.append(str(doMain))
                 start_urls.append(str(url))
-            #for url in temp['allowed_www_domains']:
-            #    allowed_domains.append(str(url))
 
         self.start_urls = start_urls
         self.allowed_domains = allowed_domains
