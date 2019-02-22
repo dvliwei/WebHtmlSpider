@@ -27,7 +27,7 @@ class WebSpider(CrawlSpider):
             temp = json.loads(f.read())
             for url in temp['start_urls']:
                 start_urls.append(str(url))
-            for url in temp['allowed_domains']:
+            for url in temp['allowed_www_domains']:
                 allowed_domains.append(str(url))
         self.start_urls = start_urls
         self.allowed_domains = allowed_domains
