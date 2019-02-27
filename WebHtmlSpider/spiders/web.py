@@ -43,7 +43,7 @@ class WebSpider(CrawlSpider):
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
         #Rule(LinkExtractor(allow=('3a2elaty.com',)), callback='parse_item', follow=True),
         # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
-        Rule(LinkExtractor(allow=('.*',)), callback='parse_item', follow=False),
+        Rule(LinkExtractor(allow=('.*',)), callback='parse_item', follow=True),
     )
 
     def parse_item(self,response):
