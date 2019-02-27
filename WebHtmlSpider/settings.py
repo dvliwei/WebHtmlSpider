@@ -21,7 +21,9 @@ CLOSESPIDER_TIMEOUT=3600
 #USER_AGENT = 'WebHtmlSpider (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+#我们在setting改变ROBOTSTXT_OBEY为False，让scrapy不要遵守robot协议，之后就能正常爬取了。
+#robot协议
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #增加并发数
