@@ -62,7 +62,7 @@ SPIDER_MIDDLEWARES = {
    'WebHtmlSpider.middlewares.WebhtmlspiderSpiderMiddleware': 543,
    'WebHtmlSpider.middlewares.AlbawabhnewsDownloaderMiddleware': None,
    'WebHtmlSpider.middlewares.MyUserAgentMiddleware': 300,
-   'scrapy.contrib.spidermiddleware.offsite.OffsiteMiddleware': 500,
+   'scrapy.spidermiddleware.offsite.offsitemIDdleware': None
 
 }
 
