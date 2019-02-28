@@ -40,7 +40,14 @@ DEPTH_LIMIT=0
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = False
+
+#下载超时
+DOWNLOAD_TIMEOUT = 15
+
+
+#禁止重定向
+REDIRECT_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -131,7 +138,7 @@ MY_USER_AGENT = [
 #AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
 AUTOTHROTTLE_DEBUG = False
-LOG_LEVEL = 'DEBUG'
+LOG_LEVEL = 'INFO'
 
 #这意味着该网站提供了原本只有ajax获取到的数据的纯HTML版本。 网站通过两种方法声明:
 AJAXCRAWL_ENABLED = True
