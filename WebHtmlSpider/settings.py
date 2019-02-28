@@ -15,7 +15,7 @@ SPIDER_MODULES = ['WebHtmlSpider.spiders']
 NEWSPIDER_MODULE = 'WebHtmlSpider.spiders'
 
 # 设置爬虫持续多少秒后结束爬虫
-CLOSESPIDER_TIMEOUT=3600
+CLOSESPIDER_TIMEOUT=0
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'WebHtmlSpider (+http://www.yourdomain.com)'
@@ -42,8 +42,13 @@ DEPTH_LIMIT=0
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = False
 
+#设置下载超时
+DOWNLOAD_TIMEOUT = 15
+
+#禁止重定向
+REDIRECT_ENABLED = False
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
 
